@@ -1,0 +1,8 @@
+Prompt untuk membantu pengerjaan flowchart : 
+"Tolong berikan penjelasan langkah demi langkah atau kerangka logika tentang cara menyusun algoritma (flowchart profesional) untuk metode Bisection (bagi dua) dalam menyelesaikan persamaan non-linier agar saya bisa mengerjakannya sendiri."
+
+Prompt untuk membantu pengerjaan kode python :
+"Bantu saya memahami struktur dasar kode Python untuk metode Bisection yang dibagi ke dalam beberapa sel Google Colab yang siap dijalankan (run per cell) tanpa menuliskan kode kodingan lengkapnya."
+
+Prompt untuk membantu menulis keterangan :
+"Tolong jelaskan praktik terbaik dalam menuliskan komentar (comments) yang rinci untuk setiap baris atau sel kode Python metode Bisection."
