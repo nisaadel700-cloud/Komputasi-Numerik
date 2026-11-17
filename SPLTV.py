@@ -50,31 +50,33 @@ def eliminasi_gauss(A, b, tol=1e-12, tampil=True):  # tol = batas pivot dianggap
 # Cell 4: Data sistem persamaan dan eksekusi
 A = [[2, 1, -1],        # persamaan (1): 2x1 + x2 -x3 = 8
      [-3, -1, 2],       # persamaan (2): -3x1 - x2 + 2x3 = -11
-     [-2, 1, 2]]        #
-b = [8, -11, -3]
+     [-2, 1, 2]]        # persamaan (3): -2x1 + x2 + 2x3 = -3
+b = [8, -11, -3]        # ruas kanan ketiga persamaan
 
-x = eliminasi_gauss(A, b)
-print("Solusi sistem:")
-for i, nilai in enumerate(x, start=1):
-    print(f"x{i} = {nilai:.6f}")
+x = eliminasi_gauss(A, b)                  # jalankan fungsi, hasilnya disimpan di x
+print("Solusi sistem:")                    # judul hasil
+for i, nilai in enumerate(x, start=1):     # enumerate dengan start=1 agar penomoran x1, x2, x3
+    print(f"x{i} = {nilai:.6f}")           # tampilkan 6 angka desimal
 
-A_np = np.array(A, dtype=float)
-b_np = np.array(b, dtype=float)
+# Cell 5: Verifikasi hasil
+A_np = np.array(A, dtype=float)                       # A dalam bentuk array desimal
+b_np = np.array(b, dtype=float)                       # b dalam bentuk array desimal
 
-residual = A_np @ x - b_np
-print("Residual (A.x - b):", residual)
-print("Residual maksimum  :", np.max(np.abs(residual)))
+residual = A_np @ x - b_np                            # A.x - b; jika solusi benar, hasilnya mendekati nol
+print("Residual (A.x - b):", residual)                # tampilkan residual tiap persamaan
+print("Residual maksimum  :", np.max(np.abs(residual)))  # selisih terbesar sebagai ukuran galat
 
-x_numpy = np.linalg.solve(A_np, b_np)
+x_numpy = np.linalg.solve(A_np, b_np)                 # solusi pembanding dari NumPy
 print("Solusi NumPy       :", x_numpy)
-print("Sama dengan NumPy? :", np.allclose(x, x_numpy))
+print("Sama dengan NumPy? :", np.allclose(x, x_numpy))  # True bila semua elemen sama dalam batas toleransi
 
-A_gagal = [[1, 1, 1],
-           [2, 2, 2],
-           [1, -1, 1]]
+# Cell 6: Uji sistem tanpa solusi tunggal
+A_gagal = [[1, 1, 1],       # persamaan (1)
+           [2, 2, 2],       # persamaan (2) = 2 x persamaan (1), jadi saling bergantung
+           [1, -1, 1]]      # persamaan (3)
 b_gagal = [6, 12, 2]
 
-try:
-    eliminasi_gauss(A_gagal, b_gagal, tampil=False)
-except ValueError as pesan:
-    print("Peringatan:", pesan)
+try:                                                   # try-except agar program tidak berhenti dengan error mentah
+    eliminasi_gauss(A_gagal, b_gagal, tampil=False)    # tampil=False supaya output singkat
+except ValueError as pesan:                            # tangkap error dari fungsi
+    print("Peringatan:", pesan)                        # tampilkan pesan yang mudah dibaca
