@@ -1,0 +1,8 @@
+Prompt untuk membantu pengerjaan flowchart : 
+"Tolong bantu saya merancang tahapan logika atau kerangka langkah-langkah (tanpa langsung membuatkan gambarnya) untuk menyelesaikan Sistem Persamaan Linear 3 Variabel menggunakan metode gauss, agar saya bisa menyusun diagram alur/flowchart-nya sendiri."
+
+Prompt untuk membantu pengerjaan kode python :
+"Berikan saya panduan struktur kode Python (berupa kerangka atau potongan kode per bagian) untuk Google Colab yang membagi proses penyelesaian SPLTV ke dalam beberapa sel terpisah agar bisa dijalankan secara berurutan, sehingga saya bisa merangkai kodenya sendiri."
+
+Prompt untuk membantu menulis keterangan :
+"Bantu saya memahami cara menambahkan komentar dan penjelasan rinci di setiap baris atau sel kode Python penyelesaian SPLTV, dengan memberikan contoh format dokumentasi yang baik agar saya bisa menuliskan penjelasan kodenya sendiri."
