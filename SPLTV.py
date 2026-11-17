@@ -1,20 +1,25 @@
-import numpy as np
+# Cell 1: Import library
+import numpy as np # NumPy menyediakan array, perkalian matriks (@), dot product, dan argmax
 
-def tampil_matriks(M, judul):
-    print(judul)
-    for baris in M:
+# cell 2: Fungsi untuk menampilkan matriks augmented
+def tampil_matriks(M, judul):                      # M = matriks augmented 3x4, judul = penanda langkah
+    print(judul)                                   # cetak judul agar jelas langkah mana yang sedang ditampilkan
+    for baris in M:                                # telusuri matriks baris demi baris
         koefisien = "  ".join(f"{v:9.4f}" for v in baris[:-1])
+        # baris[:-1] = tiga kolom koefisien; format 9.4f = lebar 9 karakter, 4 angka desimal agar kolom sejajar
         print(f"  [ {koefisien}  |  {baris[-1]:9.4f} ]")
-    print()
+        # baris[-1] = kolom konstanta b; garis tegak | memisahkan koefisien dan konstanta
+    print()                                        # baris kosong sebagai jarak antarlangkah
 
-def eliminasi_gauss(A, b, tol=1e-12, tampil=True):
-    A = np.array(A, dtype=float)
-    b = np.array(b, dtype=float)
-    if A.shape != (3, 3) or b.shape != (3,):
-        raise ValueError("Ukuran harus A 3x3 dan b 3x1.")
-    n = 3
-    M = np.hstack((A, b.reshape(n, 1)))
-    if tampil:
+# Cell 3: Fungsi utama eliminasi Gauss dengan pivoting parsial
+def eliminasi_gauss(A, b, tol=1e-12, tampil=True):  # tol = batas pivot dianggap nol, tampil = tampilkan langkah atau tidak
+    A = np.array(A, dtype=float)                    # ubah A menjadi array bertipe desimal agar pembagian tidak terpotong jadi bilangan bulat
+    b = np.array(b, dtype=float)                    # ubah b dengan alasan yang sama
+    if A.shape != (3, 3) or b.shape != (3,):        # validasi: A harus 3x3 dan b harus 3 elemen
+        raise ValueError("Ukuran harus A 3x3 dan b 3x1.")  # hentikan program bila ukuran salah
+    n = 3                                           # jumlah variabel (dan jumlah persamaan)
+    M = np.hstack((A, b.reshape(n, 1)))             # gabungkan A dan b menjadi matriks augmented 3x4
+    if tampil:                                      # tampilkan hanya bila diminta
         tampil_matriks(M, "Matriks augmented awal:")
 
     for k in range(n - 1):
