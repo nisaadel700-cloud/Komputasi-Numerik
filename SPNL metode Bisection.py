@@ -1,19 +1,22 @@
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
+# Cell 1: Import library
+import numpy as np               # operasi numerik: log2, ceil, linspace, np.roots
+import pandas as pd              # menyimpan dan menampilkan tabel iterasi
+import matplotlib.pyplot as plt  # membuat grafik fungsi dan posisi akar
 
-def f(x):
-    return x**3 - x - 2
+# Cell 2: Mendefinisikan fungsi f(x)
+def f(x):                  # f menerima satu nilai x (boleh juga array NumPy)
+    return x**3 - x - 2    # f(x) = x^3 - x - 2, akarnya dicari lewat f(x) = 0
 
-def bisection(f, a, b, tol=1e-6, maks_iter=100):
-    if a >= b:
+# Cell 3: Fungsi metode Bisection
+def bisection(f, a, b, tol=1e-6, maks_iter=100):   # tol = batas galat, maks_iter = pengaman agar tidak berputar tanpa henti
+    if a >= b:                                      # batas bawah harus lebih kecil dari batas atas
         raise ValueError("Batas bawah a harus lebih kecil dari batas atas b.")
-    fa, fb = f(a), f(b)
-    if fa * fb > 0:
+    fa, fb = f(a), f(b)                             # nilai fungsi di ujung selang, dihitung sekali di awal
+    if fa * fb > 0:                                 # hasil kali positif berarti tanda sama, akar tidak terjamin ada di selang
         raise ValueError("f(a) dan f(b) harus berbeda tanda, akar belum terkurung.")
 
-    riwayat = []
-    for i in range(1, maks_iter + 1):
+    riwayat = []                                    # daftar kosong untuk menyimpan data tiap iterasi
+    for i in range(1, maks_iter + 1):               # iterasi dari 1 sampai maks_iter
         c = (a + b) / 2
         fc = f(c)
         galat = (b - a) / 2
